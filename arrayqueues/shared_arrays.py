@@ -14,11 +14,11 @@ class ArrayView:
     def __init__(self, array, max_bytes, dtype, el_shape, i_item=0):
         self.dtype = dtype
         self.el_shape = el_shape
-        self.nbytes_el = self.dtype.itemsize * np.product(self.el_shape)
+        self.nbytes_el = self.dtype.itemsize * np.prod(self.el_shape)
         self.n_items = int(np.floor(max_bytes / self.nbytes_el))
         self.total_shape = (self.n_items,) + self.el_shape
         self.i_item = i_item
-        self.view = np.frombuffer(array, dtype, np.product(self.total_shape)).reshape(
+        self.view = np.frombuffer(array, dtype, np.prod(self.total_shape)).reshape(
             self.total_shape
         )
 
